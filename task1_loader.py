@@ -18,9 +18,10 @@ class APIWorker(object):
     def users_get(self):
         data = urlopen(self.users_get_url + self.usr_id + self.users_get_fields + self.access_token)
         obj = json.load(data)
-        if obj['response'][0]['first_name'] == u'DELETED':
-            return False
-        return obj['response'][0]
+        if 'response' in obj:
+            if obj['response'][0]['first_name'] != u'DELETED':
+                return obj['response'][0]
+        return False
 
     def friends_get(self):
         data = urlopen(self.friends_get_url + self.usr_id + self.friends_get_fields + self.access_token)
