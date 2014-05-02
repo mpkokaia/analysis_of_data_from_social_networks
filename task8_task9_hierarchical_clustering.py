@@ -5,7 +5,7 @@ import random
 from Tkinter import *
 
 
-class cluster_object:
+class ClusterObject:
     def __init__(self, vec, left=None, right=None, distance=0.0, id=None):
         self.left = left
         self.right = right
@@ -24,7 +24,7 @@ class HierarchicalCluster(object):
     def clustering(self):
         distances = {}
         currentclustid = -1
-        clust = [cluster_object(self.data[i], id=i) for i in range(len(self.data))]
+        clust = [ClusterObject(self.data[i], id=i) for i in range(len(self.data))]
         while len(clust) > 1:
             lowestpair = (0, 1)
             closest = self.tanamoto(clust[0].vec, clust[1].vec)
@@ -38,7 +38,7 @@ class HierarchicalCluster(object):
                         lowestpair = (i, j)
             mergevec = [(clust[lowestpair[0]].vec[i] + clust[lowestpair[1]].vec[i]) / 2.0 for i in
                         range(len(clust[0].vec))]
-            newcluster = cluster_object(mergevec, left=clust[lowestpair[0]], right=clust[lowestpair[1]],
+            newcluster = ClusterObject(mergevec, left=clust[lowestpair[0]], right=clust[lowestpair[1]],
                                         distance=closest,
                                         id=currentclustid)
             currentclustid -= 1
