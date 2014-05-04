@@ -27,8 +27,10 @@ class KCluster(object):
         return 1.0 - num / den
 
     def clustering(self):
-        ranges = [(min([row[i] for row in self.data]), max([row[i] for row in self.data])) for i in range(len(self.data[0]))]
-        clusters = [[random.random() * (ranges[i][1] - ranges[i][0]) + ranges[i][0] for i in range(len(self.data[0]))] for j in
+        ranges = [(min([row[i] for row in self.data]), max([row[i] for row in self.data])) for i in
+                  range(len(self.data[0]))]
+        clusters = [[random.random() * (ranges[i][1] - ranges[i][0]) + ranges[i][0] for i in range(len(self.data[0]))]
+                    for j in
                     range(self.k)]
         lastmatches = None
         for t in range(100):
@@ -53,6 +55,7 @@ class KCluster(object):
                         avgs[j] /= len(bestmatches[i])
                     clusters[i] = avgs
         return bestmatches
+
 
 def read_data():
     rownames = []
@@ -93,9 +96,10 @@ def read_data():
             rownames.append(i)
     return colnames, rownames, data
 
+
 interests, people, data = read_data()
 kclust = KCluster(data, 27).clustering()
-f = open('k_means_result.txt','w')
+f = open('k_means_result.txt', 'w')
 counter = 1
 for i in range(27):
     f.write(str(counter) + '\n')
