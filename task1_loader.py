@@ -48,7 +48,7 @@ class APIWorker(object):
 connection = Connection()
 db = connection.urfu
 
-access_token = "&access_token=bae62b9c62a99fe2cd04ca0bdf0d68c3f55192c93d7979e9cde1eea3bb6a45a3decbf52dd1f3d6881468d"
+access_token = "&access_token="
 url = "https://api.vk.com/method/users.search?v=5.5&university=477"
 foffset = "&offset="
 university_year = "&university_year="
